@@ -12,4 +12,16 @@ function dateFormatter(dateString) {
   return formattedDate;
 }
 
-export default dateFormatter;
+function articleTextPreview(articleBody) {
+  const splitWords = articleBody.split(" ");
+  console.log(splitWords);
+
+  const articlePreview = [];
+  for (let i = 0; i < 25; i++) {
+    articlePreview.push(splitWords[i]);
+  }
+
+  return articlePreview.join(" ") + "...";
+}
+
+export { dateFormatter, articleTextPreview };

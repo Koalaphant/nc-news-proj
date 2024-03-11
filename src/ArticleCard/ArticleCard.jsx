@@ -1,4 +1,4 @@
-import dateFormatter from "../utils.js";
+import { dateFormatter, articleTextPreview } from "../utils.js";
 import "./articlecard.css";
 
 const ArticleCard = ({ article }) => {
@@ -13,6 +13,7 @@ const ArticleCard = ({ article }) => {
           <div className="article-info-section">
             <h2>{article.title}</h2>
             <div className="meta-data">
+              <p className="body">{articleTextPreview(article.body)}</p>
               <p>By: {article.author}</p>
               <p>Date: {dateFormatter("2020-03-09T21:21:00.000Z")}</p>
             </div>

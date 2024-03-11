@@ -9,6 +9,10 @@
   width: 50%;
 }
 
+.body {
+  margin-bottom: 20px;
+}
+
 .img-section img {
   width: 100%;
 }
