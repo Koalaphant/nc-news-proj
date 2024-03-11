@@ -24,19 +24,20 @@ const SingleArticle = () => {
   }
 
   const backgroundStyle = {
-    backgroundImage: `url(${singleArticle.article_img_url})`,
+    background: `url(${singleArticle.article_img_url}) no-repeat rgba(0, 0, 0, 0.5)`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     color: "white",
     padding: "100px 0",
     textAlign: "center",
+    backgroundBlendMode: "multiply",
   };
 
   return (
     <>
       <section className="hero-section" style={backgroundStyle}>
         <h1 className="article-title">{singleArticle.title}</h1>
-        <p>
+        <p className="article-meta-info">
           Written by: {singleArticle.author} ||{" "}
           {dateFormatter(singleArticle.created_at)}
         </p>

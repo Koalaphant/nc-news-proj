@@ -9,4 +9,14 @@
 .article-title {
   font-size: 2.4em;
   padding: 0 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.article-meta-info {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
+  margin-top: 1em;
+  background-color: rgba(128, 0, 128, 0.692);
+  display: inline-flex;
+  padding: 10px 20px;
 }
