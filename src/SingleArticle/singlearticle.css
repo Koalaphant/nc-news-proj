@@ -1,0 +1,12 @@
+.article-body-section {
+  padding: 50px 20px;
+  line-height: 1.9;
+  font-size: 1.1em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.article-title {
+  font-size: 2.4em;
+  padding: 0 10px;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { dateFormatter, articleTextPreview } from "../utils";
 import { fetchArticles } from "../api";
+import { Link } from "react-router-dom";
 import "./articles.css";
 
 const Articles = () => {
@@ -27,13 +28,15 @@ const Articles = () => {
       <section className="container">
         <ul>
           {articles.map((article) => (
-            <li className="articleCard" key={article.id}>
+            <li className="articleCard" key={article.article_id}>
               <img src={article.article_img_url} alt={article.title} />
               <div className="meta-data-info">
                 <h2>{article.title}</h2>
                 <p className="body">{articleTextPreview(article.body)}</p>
                 <p>Date: {dateFormatter(article.created_at)}</p>
-                <button>Read More</button>
+                <Link to={`/articles/${article.article_id}`}>
+                  <button>Read More</button>
+                </Link>
               </div>
             </li>
           ))}
