@@ -1,4 +1,46 @@
-h1 {
+.articleCard {
+  display: flex;
+  margin: 15px 0px 15px 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%; /* Ensure each card takes up full width initially */
+}
+
+.body {
+  margin-bottom: 20px;
+}
+
+img {
+  width: 50%;
+}
+
+.isLoading {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 100px;
+  font-family: arial;
+  font-size: 1.5em;
+}
+
+.meta-data-info {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  align-self: flex-start;
+  padding: 10px 20px;
+  border: 0;
+  background-color: pink;
+}
+
+button:hover {
+  background-color: rgb(250, 167, 181);
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    margin: 0% 20% 0% 20%;
+  }
 }

@@ -35,6 +35,13 @@ a:hover {
 }
 
 @media (min-width: 1024px) {
+  header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+  }
+
   header nav ul {
     display: flex;
     flex-direction: row;

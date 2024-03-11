@@ -14,7 +14,6 @@ function dateFormatter(dateString) {
 
 function articleTextPreview(articleBody) {
   const splitWords = articleBody.split(" ");
-  console.log(splitWords);
 
   const articlePreview = [];
   for (let i = 0; i < 25; i++) {

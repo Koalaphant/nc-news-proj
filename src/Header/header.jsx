@@ -5,6 +5,9 @@ const Header = () => {
   return (
     <header>
       <nav>
+        <h1>
+          <Link to="/">NC News</Link>
+        </h1>
         <ul>
           <li>
             <Link to="/">Home</Link>
