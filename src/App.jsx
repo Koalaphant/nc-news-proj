@@ -1,10 +1,15 @@
 import "./App.css";
+import Articles from "./Articles/Articles";
+import Header from "./Header/header";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
-      <p>Hey</p>
+      <Header />
+      <Routes>
+        <Route path="/articles" element={<Articles />} />
+      </Routes>
     </>
   );
 }
