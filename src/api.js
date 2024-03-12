@@ -31,7 +31,7 @@ export const fetchUsers = () => {
 export const postComment = (comment, article_id) => {
   return itemsApi
     .post(`/articles/${article_id}/comments`, comment)
-    .then((response) => {
-      response.data.comment;
+    .then(({ data }) => {
+      return data.comment;
     });
 };

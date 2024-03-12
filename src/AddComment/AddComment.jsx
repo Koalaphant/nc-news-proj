@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../Contexts/User";
 import { postComment } from "../api";
+import "./addComment.css";
 
-const AddComment = ({ article_id, updateComments }) => {
+const AddComment = ({ article_id, setComments }) => {
   const { loggedInUser } = useContext(UserContext);
-  const [postBody, setPostBody] = useState();
+  const [newComment, setNewComment] = useState();
   const [submitMessage, setSubmitMessage] = useState("");
+  const [submitFailMessage, setSubmitFailMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -14,25 +16,29 @@ const AddComment = ({ article_id, updateComments }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const userPostObj = {
+
+    const commentBody = {
       username: loggedInUser.username,
-      body: postBody,
+      body: newComment,
     };
 
-    postComment(userPostObj, article_id)
-      .then((response) => {
+    postComment(commentBody, article_id)
+      .then((newCommentFromApi) => {
         setSubmitMessage("Comment submitted successfully!");
-        updateComments();
+        setNewComment("");
+        setComments((currComments) => {
+          return [newCommentFromApi, ...currComments];
+        });
       })
       .catch((error) => {
         if (error.response.data.msg === "username does not exist") {
-          setSubmitMessage("You need to be logged in to comment.");
+          setSubmitFailMessage("You need to be logged in to comment.");
         } else {
-          setSubmitMessage("Failed to submit comment. Please try again later.");
+          setSubmitFailMessage(
+            "Failed to submit comment. Please try again later."
+          );
         }
       });
-
-    setPostBody("");
   };
 
   if (isLoading) {
@@ -43,14 +49,18 @@ const AddComment = ({ article_id, updateComments }) => {
     <>
       <form onSubmit={handleSubmit}>
         <textarea
-          value={postBody}
-          onChange={(event) => setPostBody(event.target.value)}
+          className="comment-submit-body"
+          value={newComment}
+          onChange={(event) => setNewComment(event.target.value)}
           required
           placeholder="add your comment here..."
         ></textarea>
         <button>submit</button>
       </form>
-      {submitMessage && <p>{submitMessage}</p>}
+      {submitMessage && <p className="submit-message">{submitMessage}</p>}
+      {submitFailMessage && (
+        <p className="submit-fail-message">{submitFailMessage}</p>
+      )}
     </>
   );
 };
