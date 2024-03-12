@@ -34,6 +34,7 @@
 @media (min-width: 1024px) {
   .article-body-section {
     width: 50%;
+    padding: 10% 0;
     margin: 0 auto;
     display: flex;
     justify-content: center;
