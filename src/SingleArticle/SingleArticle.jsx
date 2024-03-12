@@ -36,9 +36,10 @@ const SingleArticle = () => {
   return (
     <>
       <section className="hero-section" style={backgroundStyle}>
+        <p className="article-topic">Topic: {singleArticle.topic}</p>
         <h1 className="article-title">{singleArticle.title}</h1>
         <p className="article-meta-info">
-          Written by: {singleArticle.author} ||{" "}
+          Written by: {singleArticle.author} <br />{" "}
           {dateFormatter(singleArticle.created_at)}
         </p>
       </section>
