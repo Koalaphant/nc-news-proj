@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { fetchArticleById } from "../api";
 import { dateFormatter } from "../utils";
 import "./singlearticle.css";
+import Comments from "../Comments/Comments";
 
 const SingleArticle = () => {
   let { article_id } = useParams();
@@ -18,7 +19,6 @@ const SingleArticle = () => {
     });
   }, [article_id]);
 
-  console.log(singleArticle);
   if (isLoading) {
     return <p>Loading article...</p>;
   }
@@ -46,6 +46,9 @@ const SingleArticle = () => {
       <article className="article-body-section">
         <p>{singleArticle.body}</p>
       </article>
+      <section>
+        <Comments article_id={article_id} />
+      </section>
     </>
   );
 };
