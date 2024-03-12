@@ -21,3 +21,9 @@ export const fetchCommentById = (article_id) => {
     return response.data.comments;
   });
 };
+
+export const fetchUsers = () => {
+  return itemsApi.get(`/users`).then((response) => {
+    return response.data.users;
+  });
+};

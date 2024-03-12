@@ -12,10 +12,14 @@ const Comments = ({ article_id }) => {
       setComments(fetchedComments);
       setIsLoading(false);
     });
-  });
+  }, []);
 
   if (isLoading) {
     return <p className="isLoading">Loading comments...</p>;
+  }
+
+  if (comments === undefined) {
+    return setComments([]);
   }
 
   if (comments.length === 0) {
