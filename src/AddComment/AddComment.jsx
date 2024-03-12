@@ -1,11 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../Contexts/User";
 import { postComment } from "../api";
 
-const AddComment = ({ article_id }) => {
+const AddComment = ({ article_id, updateComments }) => {
   const { loggedInUser } = useContext(UserContext);
   const [postBody, setPostBody] = useState();
-  const [commentResponse, setCommentResponse] = useState([]);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,12 +19,25 @@ const AddComment = ({ article_id }) => {
       body: postBody,
     };
 
-    postComment(userPostObj, article_id).then((response) => {
-      setCommentResponse((currCommentResponse) => {});
-    });
+    postComment(userPostObj, article_id)
+      .then((response) => {
+        setSubmitMessage("Comment submitted successfully!");
+        updateComments();
+      })
+      .catch((error) => {
+        if (error.response.data.msg === "username does not exist") {
+          setSubmitMessage("You need to be logged in to comment.");
+        } else {
+          setSubmitMessage("Failed to submit comment. Please try again later.");
+        }
+      });
 
     setPostBody("");
   };
+
+  if (isLoading) {
+    return <p>Loading Comment Form...</p>;
+  }
 
   return (
     <>
@@ -32,6 +50,7 @@ const AddComment = ({ article_id }) => {
         ></textarea>
         <button>submit</button>
       </form>
+      {submitMessage && <p>{submitMessage}</p>}
     </>
   );
 };

@@ -15,6 +15,12 @@ const Comments = ({ article_id }) => {
     });
   }, []);
 
+  const updateComments = () => {
+    fetchCommentById(article_id).then((fetchedComments) => {
+      setComments(fetchedComments);
+    });
+  };
+
   if (isLoading) {
     return <p className="isLoading">Loading comments...</p>;
   }
@@ -30,7 +36,7 @@ const Comments = ({ article_id }) => {
   return (
     <>
       <section className="comments-section">
-        <AddComment article_id={article_id} />
+        <AddComment article_id={article_id} updateComments={updateComments} />
         <ul>
           <h3>Comments</h3>
           {comments.map((comment) => (
