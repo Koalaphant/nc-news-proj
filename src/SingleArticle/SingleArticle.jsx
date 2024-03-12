@@ -6,7 +6,7 @@ import "./singlearticle.css";
 import Comments from "../Comments/Comments";
 
 const SingleArticle = () => {
-  let { article_id } = useParams();
+  const { article_id } = useParams();
 
   const [singleArticle, setSingleArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
