@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchCommentById } from "../api";
 import { dateFormatter } from "../utils";
 import "./comments.css";
+import AddComment from "../AddComment/AddComment";
 
 const Comments = ({ article_id }) => {
   const [comments, setComments] = useState([]);
@@ -29,6 +30,7 @@ const Comments = ({ article_id }) => {
   return (
     <>
       <section className="comments-section">
+        <AddComment article_id={article_id} />
         <ul>
           <h3>Comments</h3>
           {comments.map((comment) => (

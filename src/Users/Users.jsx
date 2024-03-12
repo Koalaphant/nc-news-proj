@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchUsers } from "../api";
 import "./users.css";
+import UserContext from "../Contexts/User";
 
 const Users = () => {
   const [users, setUsers] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const { setLoggedInUser } = useContext(UserContext);
 
   useEffect(() => {
     fetchUsers().then((users) => {
@@ -12,8 +15,6 @@ const Users = () => {
       setIsLoading(false);
     });
   }, []);
-
-  console.log(users);
 
   if (isLoading) {
     return <p>Loading Users...</p>;
@@ -26,7 +27,7 @@ const Users = () => {
           <img src={user.avatar_url} alt="user-avatar" />
           <p className="username">{user.username}</p>
           <p>{user.name}</p>
-          <button>Log In</button>
+          <button onClick={() => setLoggedInUser(user)}>Log In</button>
         </li>
       ))}
     </ul>
