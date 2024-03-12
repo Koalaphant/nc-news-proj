@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchCommentById } from "../api";
 import { dateFormatter } from "../utils";
 import "./comments.css";
+import AddComment from "../AddComment/AddComment";
 
 const Comments = ({ article_id }) => {
   const [comments, setComments] = useState([]);
@@ -13,6 +14,12 @@ const Comments = ({ article_id }) => {
       setIsLoading(false);
     });
   }, []);
+
+  const updateComments = () => {
+    fetchCommentById(article_id).then((fetchedComments) => {
+      setComments(fetchedComments);
+    });
+  };
 
   if (isLoading) {
     return <p className="isLoading">Loading comments...</p>;
@@ -29,6 +36,7 @@ const Comments = ({ article_id }) => {
   return (
     <>
       <section className="comments-section">
+        <AddComment article_id={article_id} setComments={setComments} />
         <ul>
           <h3>Comments</h3>
           {comments.map((comment) => (
