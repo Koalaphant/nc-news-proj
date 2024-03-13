@@ -14,7 +14,7 @@ const Articles = () => {
       setArticles(fetchedArticles);
       setIsLoading(false);
     });
-  }, []);
+  }, [topic_name]);
 
   if (isLoading) {
     return <p className="isLoading">Searching for your articles...</p>;
