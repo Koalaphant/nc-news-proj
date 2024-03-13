@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../Contexts/User";
-import { postComment } from "../api";
 import "./addComment.css";
+import { postComment } from "../api";
 
-const AddComment = ({ article_id, setComments }) => {
-  const { loggedInUser } = useContext(UserContext);
+const AddComment = ({ article_id, setComments, loggedInUser }) => {
   const [newComment, setNewComment] = useState();
   const [submitMessage, setSubmitMessage] = useState("");
   const [submitFailMessage, setSubmitFailMessage] = useState("");
