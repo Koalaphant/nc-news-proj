@@ -10,6 +10,7 @@ const Comments = ({ article_id }) => {
   const { loggedInUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
+  const [deleteFeedback, setDeleteFeedback] = useState(null);
 
   useEffect(() => {
     fetchCommentById(article_id).then((fetchedComments) => {
@@ -22,11 +23,24 @@ const Comments = ({ article_id }) => {
   }, []);
 
   const handleDeleteComment = (comment_id) => {
-    deleteComment(comment_id);
+    deleteComment(comment_id)
+      .then(() => {
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment.comment_id !== comment_id)
+        );
+        setDeleteFeedback("Comment deleted successfully.");
 
-    setComments((comments) => {
-      return comments.filter((comment) => comment.comment_id !== comment_id);
-    });
+        setTimeout(() => {
+          setDeleteFeedback(null);
+        }, 5000);
+      })
+      .catch((error) => {
+        console.error("Error deleting comment:", error);
+        setDeleteFeedback("Failed to delete comment. Please try again.");
+        setTimeout(() => {
+          setDeleteFeedback(null);
+        }, 5000);
+      });
   };
 
   if (isLoading) {
@@ -45,6 +59,7 @@ const Comments = ({ article_id }) => {
           setComments={setComments}
           loggedInUser={loggedInUser}
         />
+        {deleteFeedback && <p className="delete-feedback">{deleteFeedback}</p>}
         <ul>
           <h3>Comments</h3>
           {comments.map((comment) => (
