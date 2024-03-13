@@ -35,7 +35,6 @@ const Comments = ({ article_id }) => {
         }, 5000);
       })
       .catch((error) => {
-        console.error("Error deleting comment:", error);
         setDeleteFeedback("Failed to delete comment. Please try again.");
         setTimeout(() => {
           setDeleteFeedback(null);
