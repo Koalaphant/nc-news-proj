@@ -1,0 +1,37 @@
+.topic-section {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.topic-section h3 {
+  text-transform: capitalize;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.topic-card {
+  color: white;
+  list-style-type: none;
+  text-align: center;
+  background-color: rgb(79, 2, 100);
+  padding: 50px 10px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  max-width: calc(33.33% - 40px);
+  margin: 10px;
+}
+
+@media (max-width: 768px) {
+  .topic-card {
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .topic-card {
+    max-width: calc(100% - 20px);
+  }
+}
