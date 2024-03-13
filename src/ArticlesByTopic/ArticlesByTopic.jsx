@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchArticlesByTopic } from "../api";
 import { articleTextPreview, dateFormatter } from "../utils";
+import "./articlesByTopic.css";
 
 const ArticlesByTopic = () => {
   const { topic_name } = useParams();
@@ -16,6 +17,7 @@ const ArticlesByTopic = () => {
   return (
     <section className="container">
       <ul>
+        <h1 className="topic-header">Topic: {topic_name}</h1>
         {articles.map((article) => {
           return (
             <li className="articleCard" key={article.article_id}>
