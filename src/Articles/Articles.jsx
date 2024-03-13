@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { dateFormatter, articleTextPreview } from "../utils";
 import { fetchArticles } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./articles.css";
 
 const Articles = () => {
+  const { topic_name } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchArticles().then((fetchedArticles) => {
+    fetchArticles(topic_name).then((fetchedArticles) => {
       setArticles(fetchedArticles);
       setIsLoading(false);
     });

@@ -7,7 +7,6 @@ import { useState } from "react";
 import UserContext from "./Contexts/User";
 import Users from "./Users/Users";
 import Topics from "./Topics/Topics";
-import ArticlesByTopic from "./ArticlesByTopic/ArticlesByTopic";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -27,7 +26,7 @@ function App() {
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/users" element={<Users />} />
         <Route path="/topics" element={<Topics />} />
-        <Route path="/topics/:topic_name" element={<ArticlesByTopic />}></Route>
+        <Route path="/topics/:topic_name" element={<Articles />}></Route>
       </Routes>
     </UserContext.Provider>
   );
