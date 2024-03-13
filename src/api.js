@@ -35,3 +35,7 @@ export const postComment = (comment, article_id) => {
       return data.comment;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return itemsApi.delete(`/comments/${comment_id}`);
+};
