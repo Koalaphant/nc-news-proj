@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { dateFormatter, articleTextPreview } from "../utils";
 import { fetchArticles } from "../api";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import "./articles.css";
 
 const Articles = () => {
   const { topic_name } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [sortOrder, setSortOrder] = useState("desc");
 
   useEffect(() => {
     fetchArticles(topic_name).then((fetchedArticles) => {
@@ -15,6 +17,30 @@ const Articles = () => {
       setIsLoading(false);
     });
   }, [topic_name]);
+
+  const handleSortByChange = (event) => {
+    const selectedSortBy = event.target.value;
+    setSortBy(selectedSortBy);
+    setIsLoading(true);
+    fetchArticles(topic_name, selectedSortBy, sortOrder).then(
+      (fetchedArticles) => {
+        setArticles(fetchedArticles);
+        setIsLoading(false);
+      }
+    );
+  };
+
+  const handleSortOrderChange = (event) => {
+    const selectedSortOrder = event.target.value;
+    setSortOrder(selectedSortOrder);
+    setIsLoading(true);
+    fetchArticles(topic_name, sortBy, selectedSortOrder).then(
+      (fetchedArticles) => {
+        setArticles(fetchedArticles);
+        setIsLoading(false);
+      }
+    );
+  };
 
   if (isLoading) {
     return <p className="isLoading">Searching for your articles...</p>;
@@ -27,6 +53,17 @@ const Articles = () => {
   return (
     <>
       <section className="container">
+        <div className="sort-dropdown">
+          <select value={sortBy} onChange={handleSortByChange}>
+            <option value="created_at">Sort by Date</option>
+            <option value="comment_count">Sort by Comment Count</option>
+            <option value="votes">Sort by Votes</option>
+          </select>
+          <select value={sortOrder} onChange={handleSortOrderChange}>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
         <ul>
           {articles.map((article) => (
             <li className="articleCard" key={article.article_id}>
