@@ -55,3 +55,7 @@ export const fetchTopics = () => {
     return response.data.topics;
   });
 };
+
+export const voteArticle = (article_id, vote) => {
+  return itemsApi.patch(`/articles/${article_id}`, { inc_votes: vote });
+};
