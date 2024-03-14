@@ -4,16 +4,20 @@ const itemsApi = axios.create({
   baseURL: "https://nc-news-nxya.onrender.com/api",
 });
 
-export const fetchArticles = (topic) => {
+export const fetchArticles = (topic, sortBy, order) => {
+  let url = "/articles";
+
   if (topic) {
-    return itemsApi.get(`/articles?topic=${topic}`).then((response) => {
-      return response.data.articles;
-    });
-  } else {
-    return itemsApi.get("/articles").then((response) => {
-      return response.data.articles;
-    });
+    url += `?topic=${topic}`;
   }
+
+  if (sortBy && order) {
+    url += `${topic ? "&" : "?"}sort_by=${sortBy}&order=${order}`;
+  }
+
+  return itemsApi.get(url).then((response) => {
+    return response.data.articles;
+  });
 };
 
 export const fetchArticleById = (article_id) => {

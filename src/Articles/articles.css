@@ -34,6 +34,11 @@ button {
   background-color: pink;
 }
 
+.sort-dropdown {
+  text-align: center;
+  margin: 10px;
+}
+
 button:hover {
   background-color: rgb(250, 167, 181);
   cursor: pointer;
