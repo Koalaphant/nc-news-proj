@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { fetchArticleById } from "../api";
+import { fetchArticleById, voteArticle } from "../api";
 import { dateFormatter } from "../utils";
 import "./singlearticle.css";
 import Comments from "../Comments/Comments";
@@ -10,14 +10,30 @@ const SingleArticle = () => {
 
   const [singleArticle, setSingleArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [voteCount, setVoteCount] = useState(null);
+  const [voteFailed, setVoteFailed] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     fetchArticleById(article_id).then((article) => {
       setSingleArticle(article);
+      setVoteCount(article.votes);
       setIsLoading(false);
     });
   }, [article_id]);
+
+  const handleVote = (voteType) => {
+    const newVote = voteType === "upvote" ? 1 : -1;
+    voteArticle(article_id, newVote)
+      .then(() => {
+        setVoteCount((prevCount) => prevCount + newVote);
+        setVoteFailed(false);
+      })
+      .catch((error) => {
+        setVoteFailed(true);
+        setVoteCount((prevCount) => prevCount + newVote);
+      });
+  };
 
   if (isLoading) {
     return <p>Loading article...</p>;
@@ -45,6 +61,14 @@ const SingleArticle = () => {
       </section>
       <article className="article-body-section">
         <p>{singleArticle.body}</p>
+        <button onClick={() => handleVote("upvote")}>↑</button>
+        <p>{voteCount}</p>
+        <button onClick={() => handleVote("downvote")}>↓</button>
+        {voteFailed && (
+          <p style={{ color: "red" }}>
+            Failed to vote. Please try again later.
+          </p>
+        )}
       </article>
       <section>
         <Comments article_id={article_id} />

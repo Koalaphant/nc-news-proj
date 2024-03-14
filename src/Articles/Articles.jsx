@@ -42,6 +42,21 @@ const Articles = () => {
     );
   };
 
+  const votesFormat = (numOfVotes) => {
+    let color = "purple";
+    if (numOfVotes === 0) {
+      color = "black";
+    } else if (numOfVotes < 0) {
+      color = "red";
+    }
+
+    return (
+      <p>
+        Votes: <span style={{ color: color }}>{numOfVotes}</span>
+      </p>
+    );
+  };
+
   if (isLoading) {
     return <p className="isLoading">Searching for your articles...</p>;
   }
@@ -71,6 +86,7 @@ const Articles = () => {
               <div className="meta-data-info">
                 <h2>{article.title}</h2>
                 <p className="body">{articleTextPreview(article.body)}</p>
+                <div>{votesFormat(article.votes)}</div>
                 <p>Date: {dateFormatter(article.created_at)}</p>
                 <Link to={`/articles/${article.article_id}`}>
                   <button>Read More</button>
