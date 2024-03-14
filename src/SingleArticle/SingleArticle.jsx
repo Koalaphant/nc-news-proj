@@ -12,14 +12,20 @@ const SingleArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [voteCount, setVoteCount] = useState(null);
   const [voteFailed, setVoteFailed] = useState(false);
+  const [articleExists, setArticleExists] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticleById(article_id).then((article) => {
-      setSingleArticle(article);
-      setVoteCount(article.votes);
-      setIsLoading(false);
-    });
+    fetchArticleById(article_id)
+      .then((article) => {
+        setSingleArticle(article);
+        setVoteCount(article.votes);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setArticleExists(false);
+        setIsLoading(false);
+      });
   }, [article_id]);
 
   const handleVote = (voteType) => {
@@ -37,6 +43,10 @@ const SingleArticle = () => {
 
   if (isLoading) {
     return <p>Loading article...</p>;
+  }
+
+  if (!articleExists) {
+    return <p>This article does not exist.</p>;
   }
 
   const backgroundStyle = {

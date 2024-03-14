@@ -2,7 +2,7 @@
   display: flex;
   margin: 15px 0px 15px 0px;
   font-family: Arial, Helvetica, sans-serif;
-  width: 100%; /* Ensure each card takes up full width initially */
+  width: 100%;
 }
 
 .body {

@@ -7,6 +7,7 @@ import { useState } from "react";
 import UserContext from "./Contexts/User";
 import Users from "./Users/Users";
 import Topics from "./Topics/Topics";
+import NoMatch from "./ErrorHandling/NoMatch";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -27,6 +28,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:topic_name" element={<Articles />}></Route>
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </UserContext.Provider>
   );

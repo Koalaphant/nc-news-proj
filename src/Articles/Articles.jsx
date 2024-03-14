@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { dateFormatter, articleTextPreview } from "../utils";
-import { fetchArticles } from "../api";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { fetchArticles, fetchTopics } from "../api";
+import { Link, useParams } from "react-router-dom";
 import "./articles.css";
 
 const Articles = () => {
   const { topic_name } = useParams();
+
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState("created_at");
