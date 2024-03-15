@@ -14,7 +14,7 @@ const Topics = () => {
 
   return (
     <>
-      <section>
+      <section className="container">
         <ul className="topic-section">
           {topics.map((topic) => {
             return (
