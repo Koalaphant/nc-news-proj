@@ -13,6 +13,10 @@ header nav {
   color: white;
 }
 
+#site-logo {
+  font-family: "Courier New", Courier, monospace;
+}
+
 header nav ul {
   display: flex;
   flex-direction: column;

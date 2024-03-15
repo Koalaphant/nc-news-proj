@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <nav>
-        <h1>
+        <h1 id="site-logo">
           <Link to="/">NC News</Link>
         </h1>
         <ul>

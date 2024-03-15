@@ -8,6 +8,7 @@ import UserContext from "./Contexts/User";
 import Users from "./Users/Users";
 import Topics from "./Topics/Topics";
 import NoMatch from "./ErrorHandling/NoMatch";
+import Home from "./HomeComponent/Home";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -23,6 +24,7 @@ function App() {
     >
       <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/users" element={<Users />} />
