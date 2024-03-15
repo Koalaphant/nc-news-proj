@@ -80,20 +80,11 @@ const SingleArticle = () => {
           <p className="single-article-body">{singleArticle.body}</p>
           <div className="vote-section">
             <button className="vote-btn" onClick={() => handleVote("upvote")}>
-              <img
-                className="vote-img"
-                src="../src/resources/like.png"
-                alt="thumb-up"
-              ></img>
+              👍
             </button>
             <p>{voteCount}</p>
             <button className="vote-btn" onClick={() => handleVote("downvote")}>
-              {" "}
-              <img
-                className="vote-img"
-                src="../src/resources/dislike.png"
-                alt="thumb-up"
-              ></img>
+              👎
             </button>
             {voteFailed && (
               <p style={{ color: "red" }}>

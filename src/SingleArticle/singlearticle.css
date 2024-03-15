@@ -33,14 +33,11 @@
   display: flex;
 }
 
-.vote-img {
-  width: 30px;
-}
-
 .vote-btn {
   background-color: transparent;
   border: 0;
   padding: 20px;
+  font-size: 1.5em;
 }
 
 .vote-btn:hover {
