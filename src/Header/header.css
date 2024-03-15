@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,10 +7,135 @@
 }
 
 header {
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #233329;
+  color: white;
 }
 
-header nav {
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+nav li {
+  list-style: none;
+}
+
+#site-logo {
+  font-family: Poppins;
+  font-weight: 500;
+}
+
+#logo-nc {
+  font-weight: 300;
+  margin-right: -6px;
+}
+
+.navbar {
+  min-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-item {
+  font-size: 1.1em;
+  font-family: Poppins, sans-serif;
+  letter-spacing: 1px;
+}
+
+.logged-in {
+  background-color: #6a7152;
+  padding: 5px 10px;
+}
+
+.nav-link {
+  transition: 0.7s ease;
+}
+
+.nav-link:hover {
+  color: #63d471;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #233329;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .logged-in {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .nav-item {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .nav-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+  }
+
+  .nav-link {
+    padding: 20px 50px;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+}
+
+/* header {
+  font-family: Poppins, Helvetica, sans-serif;
   background-color: rgb(47, 0, 48);
   color: white;
 }
@@ -56,4 +183,4 @@ a:hover {
   header nav ul li {
     margin-right: 20px;
   }
-}
+} */

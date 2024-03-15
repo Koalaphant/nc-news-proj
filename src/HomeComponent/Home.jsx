@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchArticles().then((articles) => {
-      const sixMostRecent = articles.slice(0, 6);
+      const sixMostRecent = articles.slice(0, 9);
 
       setArticles(sixMostRecent);
       setIsLoading(false);
@@ -20,40 +20,37 @@ const Home = () => {
     return <p className="isLoading">Searching for your articles...</p>;
   }
 
-  const votesFormat = (numOfVotes) => {
-    let color = "purple";
-    if (numOfVotes === 0) {
-      color = "black";
-    } else if (numOfVotes < 0) {
-      color = "red";
-    }
-
-    return (
-      <p>
-        Votes: <span style={{ color: color }}>{numOfVotes}</span>
-      </p>
-    );
-  };
-
   return (
     <>
-      <h1>Most Recent Articles:</h1>
-      <ul>
-        {articles.map((article) => (
-          <li className="articleCard" key={article.article_id}>
-            <img src={article.article_img_url} alt={article.title} />
-            <div className="meta-data-info">
-              <h2>{article.title}</h2>
-              <p className="body">{articleTextPreview(article.body)}</p>
-              <div>{votesFormat(article.votes)}</div>
-              <p>Date: {dateFormatter(article.created_at)}</p>
+      <section className="container">
+        <h1 className="page-header">Recent Articles</h1>
+
+        <ul className="article-card-container">
+          {articles.map((article) => (
+            <li className="articleCard" key={article.article_id}>
               <Link to={`/articles/${article.article_id}`}>
-                <button>Read More</button>
+                <img
+                  className="article-preview-img"
+                  src={article.article_img_url}
+                  alt={article.title}
+                />
               </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="meta-data-info">
+                <p className="article-topic">{article.topic}</p>
+                <p className="article-date">
+                  Date: {dateFormatter(article.created_at)}
+                </p>
+                <h2>{article.title}</h2>
+                <p className="body">{articleTextPreview(article.body)}</p>
+                <p>Votes: {article.votes}</p>
+                <Link to={`/articles/${article.article_id}`}>
+                  <button className="read-more-btn">Read More</button>
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
     </>
   );
 };

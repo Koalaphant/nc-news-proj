@@ -54,11 +54,11 @@ const SingleArticle = () => {
   }
 
   const backgroundStyle = {
-    background: `url(${singleArticle.article_img_url}) no-repeat rgba(0, 0, 0, 0.5)`,
+    background: `url(${singleArticle.article_img_url}) no-repeat rgba(0, 0, 0, 0.8)`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     color: "white",
-    padding: "100px 0",
+    padding: "100px 20px",
     textAlign: "center",
     backgroundBlendMode: "multiply",
   };
@@ -66,27 +66,46 @@ const SingleArticle = () => {
   return (
     <>
       <section className="hero-section" style={backgroundStyle}>
-        <p className="article-topic">Topic: {singleArticle.topic}</p>
-        <h1 className="article-title">{singleArticle.title}</h1>
-        <p className="article-meta-info">
-          Written by: {singleArticle.author} <br />{" "}
+        <p className="article-topic">{singleArticle.topic}</p>
+        <p className="single-article-date">
           {dateFormatter(singleArticle.created_at)}
         </p>
+        <h1 className="single-article-title">{singleArticle.title}</h1>
+        <p className="single-article-meta-info">
+          Written by: {singleArticle.author} <br />
+        </p>
       </section>
-      <article className="article-body-section">
-        <p>{singleArticle.body}</p>
-        <button onClick={() => handleVote("upvote")}>↑</button>
-        <p>{voteCount}</p>
-        <button onClick={() => handleVote("downvote")}>↓</button>
-        {voteFailed && (
-          <p style={{ color: "red" }}>
-            Failed to vote. Please try again later.
-          </p>
-        )}
-      </article>
-      <section>
-        <Comments article_id={article_id} />
-      </section>
+      <div className="article-container">
+        <article className="article-body-section">
+          <p className="single-article-body">{singleArticle.body}</p>
+          <div className="vote-section">
+            <button className="vote-btn" onClick={() => handleVote("upvote")}>
+              <img
+                className="vote-img"
+                src="../src/resources/like.png"
+                alt="thumb-up"
+              ></img>
+            </button>
+            <p>{voteCount}</p>
+            <button className="vote-btn" onClick={() => handleVote("downvote")}>
+              {" "}
+              <img
+                className="vote-img"
+                src="../src/resources/dislike.png"
+                alt="thumb-up"
+              ></img>
+            </button>
+            {voteFailed && (
+              <p style={{ color: "red" }}>
+                Failed to vote. Please try again later.
+              </p>
+            )}
+          </div>
+        </article>
+        <section className="comments-container">
+          <Comments article_id={article_id} />
+        </section>
+      </div>
     </>
   );
 };

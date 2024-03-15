@@ -43,21 +43,6 @@ const Articles = () => {
     );
   };
 
-  const votesFormat = (numOfVotes) => {
-    let color = "purple";
-    if (numOfVotes === 0) {
-      color = "black";
-    } else if (numOfVotes < 0) {
-      color = "red";
-    }
-
-    return (
-      <p>
-        Votes: <span style={{ color: color }}>{numOfVotes}</span>
-      </p>
-    );
-  };
-
   if (isLoading) {
     return <p className="isLoading">Searching for your articles...</p>;
   }
@@ -69,28 +54,46 @@ const Articles = () => {
   return (
     <>
       <section className="container">
+        <h1 className="page-header">Articles</h1>
         <div className="sort-dropdown">
-          <select value={sortBy} onChange={handleSortByChange}>
+          <select
+            className="select-dropdown"
+            value={sortBy}
+            onChange={handleSortByChange}
+          >
             <option value="created_at">Sort by Date</option>
             <option value="comment_count">Sort by Comment Count</option>
             <option value="votes">Sort by Votes</option>
           </select>
-          <select value={sortOrder} onChange={handleSortOrderChange}>
+          <select
+            className="select-dropdown"
+            value={sortOrder}
+            onChange={handleSortOrderChange}
+          >
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
           </select>
         </div>
-        <ul>
+        <ul className="article-card-container">
           {articles.map((article) => (
             <li className="articleCard" key={article.article_id}>
-              <img src={article.article_img_url} alt={article.title} />
+              <Link to={`/articles/${article.article_id}`}>
+                <img
+                  className="article-preview-img"
+                  src={article.article_img_url}
+                  alt={article.title}
+                />
+              </Link>
               <div className="meta-data-info">
+                <p className="article-topic" >{article.topic}</p>
+                <p className="article-date">
+                  Date: {dateFormatter(article.created_at)}
+                </p>
                 <h2>{article.title}</h2>
                 <p className="body">{articleTextPreview(article.body)}</p>
-                <div>{votesFormat(article.votes)}</div>
-                <p>Date: {dateFormatter(article.created_at)}</p>
+                <p>Votes: {article.votes}</p>
                 <Link to={`/articles/${article.article_id}`}>
-                  <button>Read More</button>
+                  <button className="read-more-btn">Read More</button>
                 </Link>
               </div>
             </li>
