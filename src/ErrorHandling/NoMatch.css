@@ -3,7 +3,25 @@
   margin: 100px 0 0 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5em;
-  color: purple;
+  color: #233329;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-not-found-btn {
+  background-color: #233329;
+  border: 0px;
+  color: white;
+  text-decoration: none;
+  padding: 10px 60px;
+}
+
+.page-not-found-btn a {
+  text-decoration: none;
+  color: white;
+  font-size: 3em;
 }
 
 .page-not-found h1 {
@@ -14,4 +32,5 @@
   border-radius: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  width: 50%;
 }

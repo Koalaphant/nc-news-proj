@@ -53,6 +53,7 @@ const Comments = ({ article_id }) => {
   return (
     <>
       <section className="comments-section">
+        <h3 className="comments-title">Comments</h3>
         <AddComment
           article_id={article_id}
           setComments={setComments}
@@ -60,7 +61,6 @@ const Comments = ({ article_id }) => {
         />
         {deleteFeedback && <p className="delete-feedback">{deleteFeedback}</p>}
         <ul>
-          <h3>Comments</h3>
           {comments.map((comment) => (
             <li className="comment-card" key={comment.comment_id}>
               <aside className="img-col">
@@ -80,8 +80,8 @@ const Comments = ({ article_id }) => {
               </aside>
               <aside className="comment-data-col">
                 <p>{comment.author}</p>
-                <p id="comment-body">{comment.body}</p>
                 <p>{dateFormatter(comment.created_at)}</p>
+                <p id="comment-body">{comment.body}</p>
                 {loggedInUser.username === comment.author && (
                   <button
                     onClick={() => handleDeleteComment(comment.comment_id)}

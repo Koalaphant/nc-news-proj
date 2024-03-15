@@ -1,7 +1,9 @@
 .comments-section h3 {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5em;
+  font-family: Noto Sans Khojki;
+  font-size: 1.8em;
+  color: white;
+  margin-bottom: 20px;
 }
 
 .delete-feedback {
@@ -11,15 +13,16 @@
 }
 
 .comments-section {
-  background-color: rgb(212, 211, 211);
+  background-color: #233329;
   padding: 10% 5%;
 }
 
 .comment-card {
   display: flex;
+  flex-direction: column;
   list-style-type: none;
   margin: 1.8em 0;
-  background-color: rgb(151, 151, 151);
+  background-color: white;
   padding: 30px 30px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.7em;
@@ -35,11 +38,12 @@
   object-fit: cover;
   width: 100%;
   border-radius: 20px;
-  width: 70px;
+  width: 90px;
 }
 
 #comment-body {
   margin: 20px 0px;
+  font-size: 1em;
 }
 
 @media (min-width: 1024px) {
@@ -49,5 +53,14 @@
 
   .user-img-comment {
     width: 150px;
+  }
+
+  #comment-body {
+    margin: 20px 0px;
+    font-size: 1.2em;
+  }
+
+  .comment-card {
+    flex-direction: row;
   }
 }

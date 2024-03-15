@@ -53,12 +53,14 @@ const AddComment = ({ article_id, setComments, loggedInUser }) => {
           required
           placeholder="add your comment here..."
         ></textarea>
-        <button>submit</button>
+        <button className="comment-submit-btn">submit</button>
       </form>
-      {submitMessage && <p className="submit-message">{submitMessage}</p>}
-      {submitFailMessage && (
-        <p className="submit-fail-message">{submitFailMessage}</p>
-      )}
+      <div className="submission-msg">
+        {submitMessage && <p className="submit-message">{submitMessage}</p>}
+        {submitFailMessage && (
+          <p className="submit-fail-message">{submitFailMessage}</p>
+        )}
+      </div>
     </>
   );
 };

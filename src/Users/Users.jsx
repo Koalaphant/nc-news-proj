@@ -21,16 +21,23 @@ const Users = () => {
   }
 
   return (
-    <ul className="user-list">
-      {users.map((user) => (
-        <li key={user.username} className="user-card">
-          <img src={user.avatar_url} alt="user-avatar" />
-          <p className="username">{user.username}</p>
-          <p>{user.name}</p>
-          <button onClick={() => setLoggedInUser(user)}>Log In</button>
-        </li>
-      ))}
-    </ul>
+    <div className="container">
+      <ul className="user-list">
+        {users.map((user) => (
+          <li key={user.username} className="user-card">
+            <img src={user.avatar_url} alt="user-avatar" />
+            <p className="name">{user.name}</p>
+            <p className="username">{user.username}</p>
+            <button
+              className="standard-btn"
+              onClick={() => setLoggedInUser(user)}
+            >
+              Log In
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
