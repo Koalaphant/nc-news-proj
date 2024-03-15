@@ -4,6 +4,7 @@ import { fetchArticleById, voteArticle } from "../api";
 import { dateFormatter } from "../utils";
 import "./singlearticle.css";
 import Comments from "../Comments/Comments";
+import NoMatch from "../ErrorHandling/NoMatch";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -44,9 +45,12 @@ const SingleArticle = () => {
   if (isLoading) {
     return <p>Loading article...</p>;
   }
-
   if (!articleExists) {
-    return <p>This article does not exist.</p>;
+    return (
+      <>
+        <NoMatch />
+      </>
+    );
   }
 
   const backgroundStyle = {
