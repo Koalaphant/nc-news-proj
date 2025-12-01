@@ -17,3 +17,15 @@ In your terminal:
 Then navigate to this directory
 
     cd nc-news-proj
+
+### Run in Docker (production build)
+
+1. Build the image, injecting your API URL (required at build time for Vite):
+
+       docker build --build-arg VITE_API_BASE_URL="https://your-api.example.com/api" -t nc-news-prod .
+
+2. Run the container and expose it on port 80 (or adjust to suit your VPS):
+
+       docker run -d --name nc-news-prod -p 80:80 nc-news-prod
+
+Set a different host port (e.g. `-p 3000:80`) if port 80 is already taken. Rebuild the image whenever you change code or the API base URL.

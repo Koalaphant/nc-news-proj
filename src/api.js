@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+if (!baseURL) {
+  throw new Error("VITE_API_BASE_URL is not set");
+}
+
 const itemsApi = axios.create({
-  baseURL: "https://nc-news-nxya.onrender.com/api",
+  baseURL,
 });
 
 export const fetchArticles = (topic, sortBy, order) => {
